@@ -10,7 +10,7 @@ session.headers['User-Agent'] = USER_AGENT
 session.headers['Accept-Language'] = LANGUAGE
 session.headers['Content-Language'] = LANGUAGE
 
-url = "https://www.startech.com.bd/product/search?&search=gigabyte%20monitor&limit=20 "
+url = "https://www.ryanscomputers.com/search?q=gigabyte%20monitor "
 # makes a request to the web page and gets its HTML
 
 page = session.get(url)
@@ -18,17 +18,18 @@ page = session.get(url)
 soup = BeautifulSoup(page.content,  'html.parser')
 
 #print(soup.prettify())
-results = soup.find(id="content")
-mydivs = results.find_all("div", {"class": "p-item"})
+
+results = soup.find(id="hits")
+mydivs = results.find_all("div", {"class": "ais-hits--item"})
 
 
 for mydiv in mydivs:
-    item_name = mydiv.find("h4", class_="p-item-name")
-    item_images = mydiv.find("img").get('src')
-    item_links = mydiv.find("a").get('href')
-    item_price = mydiv.find("div", class_="p-item-price")
+    item_name = mydiv.find("a", class_="product-content-info")
+    item_images = mydiv.find("img", {"class": "product-thumb"}).get('src')
+    item_links = mydiv.find("a", {"class": "product-thumb"}).get('href')
+    #item_price = mydiv.find("span", class_="price")
     print(item_name.text.strip())
     print(item_images)
     print(item_links)
-    print(item_price.text.strip())
+    #print(item_price.text.strip())
     print()
