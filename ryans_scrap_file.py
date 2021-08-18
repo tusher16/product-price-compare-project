@@ -15,16 +15,17 @@ url = "https://www.ryanscomputers.com/search?q=asus%20monitor "
 
 page = session.get(url)
 # stores the HTML page in 'soup', a BeautifulSoup object
-# soup = BeautifulSoup(page.content,  'html.parser')
-soup = BeautifulSoup(page.content, 'html5lib')
+# soup = BeautifulSoup(page.content,  'html.parser')  
+#soup = BeautifulSoup(page.content, 'html5lib')
+soup = BeautifulSoup(page.content,  'lxml')
 
-#print(soup.prettify())
-results = soup.find('div', attrs = {"class":"search-wrapper"})
-mydivs = results.find_all("div", attrs={"class": "product-content-info"})
+print(soup.prettify())
+#results = soup.find('div', attrs = {"class":"search-wrapper"})
+#mydivs = results.find_all("div", attrs={"class": "product-content-info"})
 
 
 
-print(mydivs)
+#print(mydivs)
 '''
 for mydiv in mydivs:
     item_name = mydiv.find("a", attrs={"class":"product-content-info"})
