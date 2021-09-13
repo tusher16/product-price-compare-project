@@ -42,7 +42,7 @@ def getCourses(driver, search_keyword):
             print({
                 "name": course.select_one(item_name).text,
                 "price": course.select_one(item_price).text,
-                "link": course.select_one(item_link).text,
+                "link": course.select_one(item_link),
                 #"length": course.select_one(length_selector).text,
             })
 
